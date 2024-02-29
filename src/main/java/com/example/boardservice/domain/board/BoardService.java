@@ -1,5 +1,7 @@
 package com.example.boardservice.domain.board;
 
+import com.example.boardservice.domain.member.MemberOfBoard;
+
 import java.util.List;
 import java.util.Optional;
 
