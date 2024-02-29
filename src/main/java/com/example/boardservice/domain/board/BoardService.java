@@ -1,6 +1,8 @@
 package com.example.boardservice.domain.board;
 
 import com.example.boardservice.domain.member.MemberOfBoard;
+import com.example.boardservice.web.dto.AddBoardMemberPayload;
+import com.example.boardservice.web.dto.CreateBoardPayload;
 
 import java.util.List;
 import java.util.Optional;
