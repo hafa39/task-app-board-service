@@ -54,4 +54,6 @@ public interface BoardService {
     MemberOfBoard addMember(Long boardId, AddBoardMemberPayload payload);
 
     void remove(Long boardId);
+
+    boolean isBoardCreator(Long boardId, String userId);
 }
