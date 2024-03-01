@@ -22,3 +22,4 @@ spring:
 user:
   service:
     url: http://localhost:9003
+
