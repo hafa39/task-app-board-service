@@ -24,4 +24,6 @@ public interface TeamService {
   Team createTeam(CreateTeamPayload payload, String userId);
 
   Team updateTeam(CreateTeamPayload payload,Long teamId);
+
+  boolean isTeamCreator(Long teamId, String userId);
 }
