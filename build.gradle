@@ -39,6 +39,8 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-testcontainers'
     testImplementation 'org.testcontainers:postgresql'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation "com.github.dasniko:testcontainers-keycloak:${testKeycloakVersion}"
+
 }
 
 dependencyManagement {
