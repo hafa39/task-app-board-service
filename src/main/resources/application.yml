@@ -19,6 +19,12 @@ spring:
       connection-timeout: 2000
       maximum-pool-size: 5
 
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/TaskAgile
+
 user:
   service:
     url: http://localhost:9003

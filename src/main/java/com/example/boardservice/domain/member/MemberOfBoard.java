@@ -1,10 +1,13 @@
 package com.example.boardservice.domain.member;
 
+
+
 public record MemberOfBoard(
         String id,
         String username,
         String firstName,
         String lastName
+
 ){
 
     public String getInitials() {

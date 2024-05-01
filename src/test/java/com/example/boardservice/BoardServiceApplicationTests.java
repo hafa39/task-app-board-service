@@ -43,7 +43,7 @@ class BoardServiceApplicationTests {
 
     @Container
     private static final KeycloakContainer keycloakContainer = new KeycloakContainer("quay.io/keycloak/keycloak:19.0")
-            .withRealmImportFile("test-realm-config.json");
+            .withRealmImportFile("test-realm.json");
 
     @Container
     static PostgreSQLContainer<?> database = new PostgreSQLContainer<>(DockerImageName.parse("postgres:14.4"));
@@ -96,7 +96,7 @@ class BoardServiceApplicationTests {
     }
 
     @Test()
-    void whenGetTeamsByUserThenBooksReturned(){
+    void whenGetTeamsByUserThenTeamsReturned(){
         String teamName1 = "Test team 1";
         var p1 = new CreateTeamPayload(teamName1);
 
