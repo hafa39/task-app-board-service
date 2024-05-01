@@ -22,4 +22,11 @@ public record Board(
         String lastModifiedBy,
         @Version
         int version ) {
+        public static Board of(String name, String description, Long teamId){
+                return new Board(null,name,description,teamId,false,null,null,null,null,0);
+        }
+
+        public boolean isPersonal() {
+                return this.teamId == 0;
+        }
 }

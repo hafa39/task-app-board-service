@@ -1,0 +1,31 @@
+server:
+  port: 9001
+  tomcat:
+    connection-timeout: 2s
+    keep-alive-timeout: 15s
+    threads:
+      min-spare: 5
+      max: 50
+  shutdown: graceful
+
+spring:
+  application:
+    name: board-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/taskdb_board
+    username: user
+    password: password
+    hikari:
+      connection-timeout: 2000
+      maximum-pool-size: 5
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/TaskAgile
+
+user:
+  service:
+    url: http://localhost:9003
+

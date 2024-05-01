@@ -6,6 +6,5 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 public interface BoardRepository extends CrudRepository<Board,Long> {
-    @Transactional(readOnly = true)
     List<Board> findByTeamId(Long teamId);
 }
