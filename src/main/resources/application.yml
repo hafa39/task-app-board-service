@@ -25,6 +25,18 @@ spring:
         jwt:
           issuer-uri: http://localhost:8080/realms/TaskAgile
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always
+      show-components: always
+      probes:
+        enabled: true
+
 user:
   service:
     url: http://localhost:9003
