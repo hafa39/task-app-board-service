@@ -62,7 +62,7 @@ public class BoardServiceImpl implements BoardService{
 
         log.info("User with ID '{}' added as a member to the board", savedBoard.creatorId());
 
-        return null;
+        return savedBoard;
     }
 
     @Override
