@@ -13,7 +13,6 @@ import java.util.Optional;
 @Configuration
 @EnableJdbcAuditing
 public class DataConfig {
-
     @Bean
     AuditorAware<String> auditorAware() {
         return () -> Optional.ofNullable(SecurityContextHolder.getContext())

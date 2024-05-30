@@ -20,7 +20,6 @@ public class DataLoader {
 
     private BoardRepository boardRepository;
     private BoardMembersRepository boardMembersRepository;
-
     private TeamRepository teamRepository;
 
     public DataLoader(BoardRepository boardRepository, BoardMembersRepository boardMembersRepository, TeamRepository teamRepository) {
@@ -31,31 +30,22 @@ public class DataLoader {
 
     @EventListener(ApplicationReadyEvent.class)
     @Transactional
-    public void loadBoards() {
+    public void loadInitialData() {
+        if (teamRepository.count() == 0 && boardRepository.count() == 0) {
+            String defaultUserID = "fb32a905-3bf5-4bd0-836e-94a98faa9fec";
 
-        if (teamRepository.count() == 0 && boardRepository.count()==0){
-            String bjornID = "fb32a905-3bf5-4bd0-836e-94a98faa9fec";
+            // Create teams
+            Team team1 = teamRepository.save(Team.of("Developer Team", defaultUserID));
 
-            Team team1 = teamRepository.save(Team.of("team1", bjornID));
-            Team team2 = teamRepository.save(Team.of("team2", bjornID));
+            // Create boards for team1
+            Board board1 = new Board(null, "Project Board", "Manage ongoing tasks", team1.id(), false, null, null, defaultUserID, defaultUserID, 0);
 
+            // Save boards
+            Board savedBoard1 = boardRepository.save(board1);
 
-            Board b1 = new Board(null, "b1", "desc b1", team1.id(), false, null, null, bjornID, bjornID, 0);
-            Board b2 = new Board(null, "b2", "desc b2", team1.id(), false, null, null, bjornID, bjornID, 0);
-            Board b3 = new Board(null, "b3", "desc b3", team2.id(), false, null, null, "test", "test", 0);
-            Board b1_saved = boardRepository.save(b1);
-            Board b2_saved = boardRepository.save(b2);
-            Board b3_saved = boardRepository.save(b3);
-
-            BoardMembers b1_bjorn = new BoardMembers(null,b1_saved.id(), bjornID);
-            BoardMembers b2_bjorn = new BoardMembers(null,b2_saved.id(), bjornID);
-            BoardMembers b3_bjorn = new BoardMembers(null,b3_saved.id(), bjornID);
-            boardMembersRepository.saveAll(List.of(b1_bjorn, b2_bjorn, b3_bjorn));
-
-            Board privateBoard = new Board(null, "private", "desc private", 0L, false, null, null, bjornID, bjornID, 0);
-            Board savedPrivate = boardRepository.save(privateBoard);
-            BoardMembers private_bjorn = new BoardMembers(null,savedPrivate.id(), bjornID);
-            boardMembersRepository.save(private_bjorn);
+            // Add members to boards
+            BoardMembers board1Member = new BoardMembers(null, savedBoard1.id(), defaultUserID);
+            boardMembersRepository.saveAll(List.of(board1Member));
         }
     }
 }

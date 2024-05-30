@@ -31,12 +31,10 @@ public record Team(
     public static Team of(String name,String creatorId) {
         return new Team(null, name, false, null,null,creatorId,creatorId,0);
     }
-
     public static Team updateName(String nameToUpdate,Team team){
         return new Team(team.id(), nameToUpdate, team.archived(),team.createdDate(),
                 team.lastModifiedDate(), team.creatorId(), team.lastModifiedBy(), team.version());
     }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -44,7 +42,6 @@ public record Team(
         Team team = (Team) o;
         return archived == team.archived && version == team.version && Objects.equals(id, team.id) && Objects.equals(name, team.name) && Objects.equals(createdDate, team.createdDate) && Objects.equals(lastModifiedDate, team.lastModifiedDate) && Objects.equals(creatorId, team.creatorId) && Objects.equals(lastModifiedBy, team.lastModifiedBy);
     }
-
 
 }
 

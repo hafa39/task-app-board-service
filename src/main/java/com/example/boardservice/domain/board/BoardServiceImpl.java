@@ -1,5 +1,6 @@
 package com.example.boardservice.domain.board;
 
+import com.example.boardservice.domain.exc.BoardNotFoundException;
 import com.example.boardservice.domain.member.BoardMembers;
 import com.example.boardservice.domain.member.BoardMembersRepository;
 import com.example.boardservice.domain.member.MemberClient;
@@ -41,7 +42,6 @@ public class BoardServiceImpl implements BoardService{
 
         List<BoardMembers> boardMembersList = boardMembersRepository.findByUserId(userId);
         Set<Long> boardIds = boardMembersList.stream().map(BoardMembers::boardId).collect(Collectors.toSet());
-
         List<Board> boards = new ArrayList<>();
         boardRepository.findAllById(boardIds).forEach(boards::add);
         return boards;
@@ -96,7 +96,6 @@ public class BoardServiceImpl implements BoardService{
         log.info("Finding members for board with ID '{}'", boardId);
 
         List<BoardMembers> boardMembersList = boardMembersRepository.findByBoardId(boardId);
-
         List<MemberOfBoard> members = boardMembersList.stream()
                 .map(boardMember ->
                         memberClient.getMemberInfoById(boardMember.userId()))
@@ -104,6 +103,7 @@ public class BoardServiceImpl implements BoardService{
                 .collect(Collectors.toList());
 
         log.info("Found {} members for board with ID '{}'", members.size(), boardId);
+
         return members;
     }
 
@@ -121,7 +121,6 @@ public class BoardServiceImpl implements BoardService{
     @Override
     @Transactional
     public void remove(Long boardId) {
-        // TODO: delete related cards
         boardRepository.deleteById(boardId);
     }
 }

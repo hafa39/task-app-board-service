@@ -14,7 +14,6 @@ public class BoardInternController {
     private static final Logger log =
             LoggerFactory.getLogger(BoardInternController.class);
     private BoardService boardService;
-
     public BoardInternController(BoardService boardService) {
         this.boardService = boardService;
     }
@@ -22,7 +21,6 @@ public class BoardInternController {
     @GetMapping("/isMember")
     public Boolean isMemberOfBoard(@RequestParam(value = "userId")String userId,
                                    @RequestParam(value = "boardId")Long boardId){
-
         log.info("Checking if user {} is a member of board {}", userId, boardId);
         return boardService.isUserMemberOfBoard(boardId, userId);
     }
