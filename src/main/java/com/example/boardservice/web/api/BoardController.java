@@ -26,7 +26,6 @@ public class BoardController {
     private static final Logger log =
             LoggerFactory.getLogger(BoardController.class);
     private BoardService boardService;
-
     public BoardController(BoardService boardService) {
         this.boardService = boardService;
     }
@@ -45,7 +44,6 @@ public class BoardController {
     @GetMapping("/{id}")
     @PreAuthorize("@boardServiceImpl.isUserMemberOfBoard(#id,#jwt.subject)")
     public Map<String,Object> getBoardById(@PathVariable Long id, @AuthenticationPrincipal Jwt jwt){
-
         Board board = boardService.findById(id).orElseThrow();
         List<MemberOfBoard> membersByBoard = boardService.findMemberByBoardId(board.id());
         return BoardResult.build(board,membersByBoard);

@@ -43,13 +43,7 @@ public interface BoardService {
      */
     boolean isUserMemberOfBoard(Long boardId, String userId);
 
-    /**
-     *
-     * @param boardId
-     * @return
-     */
     List<MemberOfBoard> findMemberByBoardId(Long boardId);
-
 
     MemberOfBoard addMember(Long boardId, AddBoardMemberPayload payload);
 
